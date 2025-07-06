@@ -1,4 +1,4 @@
-# Desafio DevOps em Redes - Monitoramento Web
+# Desafio DevOps - Monitoramento Web
 
 Este repositório contém a resolução para o desafio prático de Analista de Operações Pleno - foco em DevOps, focado no monitoramento de aplicações web e infraestrutura de rede. A solução implementa um agente de monitoramento em container, armazenamento de dados em banco de dados e visualização através de dashboards no Grafana.
 
@@ -8,24 +8,14 @@ Este repositório contém a resolução para o desafio prático de Analista de O
 
 A arquitetura da solução foi projetada para ser modular, escalável e de fácil implantação utilizando `Docker` e `Docker Compose`. Ela é composta pelos seguintes serviços principais:
 
-+-----------------+       +----------------+       +----------------+
-|                 |       |                |       |                |
-|  Agente de      |       |   Prometheus   |       |    Grafana     |
-|  Monitoramento  | <---> | (Coletor/DB de | <---> | (Visualização) |
-| (Python App)    |       |    Métricas)   |       |                |
-|                 |       |                |       |                |
-+-----------------+       +----------------+       +----------------+
-|       ^
-|       |  (Métricas para Prometheus)
-|       |
-v       |  (Registros Brutos para DB)
-+-----------------+
-|                 |
-|    MongoDB      |
-|  (No-SQL DB)    |
-|                 |
-+-----------------+
+```mermaid
+graph TD
+    subgraph Monitoramento e Visualização
+        A[Agente de Monitoramento (Python App)] -- Métricas --> B(Prometheus - Coletor/TSDB de Métricas)
+        B -- Visualização --> C(Grafana - Dashboards)
+    end
 
+    A -- Registros Brutos --> D[MongoDB - No-SQL DB]
 **Descrição dos Componentes:**
 
 * **Agente de Monitoramento (`monitor_agent`):** Uma aplicação Python customizada, conteinerizada com Docker, responsável por executar os testes de monitoramento. Ele realiza:
