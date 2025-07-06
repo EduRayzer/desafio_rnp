@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: 'Web Monitoring Dashboards'
+    orgId: 1
+    folder: '' # Ou um nome de pasta se quiser organizar
+    type: file
+    disableDelete: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards # Caminho dentro do container

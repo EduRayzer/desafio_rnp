@@ -38,6 +38,12 @@ services:
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
+  # --- Provisionamento de Dashboards (Opcional) ---
+      # Para que os dashboards sejam carregados automaticamente no Grafana:
+      # 1. Certifique-se de que o arquivo JSON do dashboard exportado está em ./grafana/dashboards/
+      # 2. Descomente as duas linhas abaixo:
+      #- ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      #- ./grafana/provisioning/dashboards/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=desafio_rnp123
