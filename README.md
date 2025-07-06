@@ -8,23 +8,7 @@ Este repositório contém a resolução para o desafio prático de Analista de O
 
 A arquitetura da solução foi projetada para ser modular, escalável e de fácil implantação utilizando `Docker` e `Docker Compose`. Ela é composta pelos seguintes serviços principais:
 
-+-----------------+       +----------------+       +----------------+
-|                 |       |                |       |                |
-|  Agente de      |       |   Prometheus   |       |    Grafana     |
-|  Monitoramento  | <---> | (Coletor/DB de | <---> | (Visualização) |
-| (Python App)    |       |    Métricas)   |       |                |
-|                 |       |                |       |                |
-+-----------------+       +----------------+       +----------------+
-      |       ^
-      |       |  (Métricas para Prometheus)
-      |       |
-      v       |  (Registros Brutos para DB)
-+-----------------+
-|                 |
-|    MongoDB      |
-|  (No-SQL DB)    |
-|                 |
-+-----------------+
+![High-Level Design da Solução de Monitoramento Web](images/diagram.png)
 
 * **Agente de Monitoramento (`monitor_agent`):** Uma aplicação Python customizada, conteinerizada com Docker, responsável por executar os testes de monitoramento. Ele realiza:
     * **Testes de Ping:** Medição de latência (RTT) e perda de pacotes (%) para alvos de rede específicos (`google.com`, `youtube.com`, `rnp.br`).
